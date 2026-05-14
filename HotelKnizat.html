@@ -1,0 +1,1362 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5* Rodinný Hotel Knížat | Štrbské Pleso</title>
+    <style>
+        /* Základný reset a typografia */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e67e22;
+            --accent-color: #27ae60;
+            --light-bg: #f9f9f9;
+            --text-dark: #333;
+            --gold-color: #f1c40f;
+            --border-color: #ddd;
+        }
+
+        body {
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: #fff;
+        }
+
+        /* Navigácia */
+        header {
+            background-color: rgba(255, 255, 255, 0.95);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-size: 1.6rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            line-height: 1.2;
+        }
+
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .stars {
+            font-size: 0.9rem;
+            color: var(--gold-color);
+            letter-spacing: 2px;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Sekcie */
+        section {
+            padding: 90px 2rem 60px 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* HERO BANNER */
+        .hero-container {
+            position: relative;
+            width: 100%;
+            height: 80vh;
+            overflow: hidden;
+            background-color: #2c3e50;
+        }
+
+        .hero-bg-img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 3;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 2rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            max-width: 900px;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+            max-width: 700px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 0.9rem 2.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-top: 4rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #d35400;
+            transform: translateY(-2px);
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 0.5rem;
+        }
+
+        .tagline {
+            text-align: center;
+            font-style: italic;
+            color: #7f8c8d;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Grid rozloženia */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background: var(--light-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .card-img-holder {
+            width: 100%;
+            height: 240px;
+            overflow: hidden;
+        }
+
+        .card-img-holder img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 1.8rem;
+            flex-grow: 1;
+        }
+
+        .card-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        /* Štýly pre rozbaľovacie detaily */
+        .room-details {
+            margin-top: 1rem;
+            border-top: 1px dashed #ccc;
+            padding-top: 1rem;
+        }
+
+        .room-summary {
+            display: block;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.3s;
+            user-select: none;
+            outline: none;
+        }
+
+        .room-summary:hover {
+            background-color: var(--secondary-color);
+        }
+
+        .room-details[open] .room-summary {
+            background-color: #7f8c8d;
+            margin-bottom: 1rem;
+        }
+
+        .room-gallery {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .room-gallery img {
+            width: 100%;
+            height: 110px;
+            object-fit: cover;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .room-info-block {
+            background: #fff;
+            padding: 0.8rem;
+            border-radius: 4px;
+            border-left: 4px solid var(--secondary-color);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .room-info-block ul {
+            margin-left: 1.2rem;
+            margin-top: 0.3rem;
+        }
+
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .price-table th, .price-table td {
+            border: 1px solid #ddd;
+            padding: 0.5rem;
+            text-align: left;
+        }
+
+        .price-table th {
+            background-color: #eee;
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .price-table td strong {
+            color: var(--secondary-color);
+        }
+
+        .btn-select-package {
+            display: block;
+            width: 100%;
+            text-align: center;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.5rem;
+            margin-top: 1rem;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+
+        .btn-select-package:hover {
+            background-color: #219653;
+        }
+
+        /* Štýly pre prehľadné kulinárske menu */
+        .menu-section-title {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-top: 1.2rem;
+            margin-bottom: 0.4rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .menu-item {
+            margin-bottom: 0.8rem;
+            padding-left: 0.5rem;
+        }
+
+        .menu-item-name {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .menu-item-desc {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.3;
+        }
+
+        /* O nás - rozloženie */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        .about-text { 
+            flex: 1; 
+            font-size: 1.1rem;
+        }
+        .about-img-container { 
+            flex: 1; 
+            height: 400px;
+            overflow: hidden;
+            border-radius: 8px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .about-img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Kontakt a Profesionálny rezervačný formulár */
+        .contact-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .contact-info {
+            flex: 1;
+            background: var(--light-bg);
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+        .contact-form {
+            flex: 1.5;
+            background: #fff;
+            padding: 2.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+        .form-row {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.2rem;
+        }
+        .form-group {
+            flex: 1;
+            margin-bottom: 1.2rem;
+        }
+        .form-group.full-width {
+            width: 100%;
+        }
+        .form-group label { 
+            display: block; 
+            margin-bottom: 0.5rem; 
+            font-weight: 600; 
+            color: var(--primary-color); 
+            font-size: 0.9rem;
+        }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1rem;
+            background-color: #fff;
+            color: var(--text-dark);
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+        }
+        
+        /* Sekcia platby vo formulári */
+        .payment-security-notice {
+            background-color: #eef9f1;
+            border-left: 4px solid var(--accent-color);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 0 4px 4px 0;
+            font-size: 0.85rem;
+            color: #1e7e34;
+        }
+        .payment-methods {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            margin-top: 0.5rem;
+        }
+        .payment-badge {
+            background: #f1f1f1;
+            padding: 0.4rem 0.8rem;
+            border-radius: 4px;
+            font-weight: bold;
+            font-size: 0.75rem;
+            color: #666;
+            border: 1px solid #e0e0e0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .booking-summary-box {
+            background-color: var(--light-bg);
+            border: 1px solid var(--border-color);
+            padding: 1.2rem;
+            border-radius: 6px;
+            margin-bottom: 1.5rem;
+        }
+        .booking-summary-box h4 {
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Modálne okno úspešnej rezervácie */
+        .modal-success {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+        .modal-content {
+            background: white;
+            padding: 3rem;
+            border-radius: 8px;
+            max-width: 550px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            animation: fadeIn 0.4s ease;
+        }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .modal-content .success-icon {
+            font-size: 4rem;
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+        }
+        .modal-content h3 {
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+        }
+        .modal-content p {
+            color: #555;
+            margin-bottom: 1.5rem;
+        }
+        .receipt-details {
+            background: var(--light-bg);
+            padding: 1rem;
+            border-radius: 6px;
+            text-align: left;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+            border: 1px dashed #ccc;
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 4rem 2rem 2rem 2rem;
+            margin-top: 4rem;
+        }
+        .footer-grid {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: left;
+        }
+        .footer-col h4 {
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin-bottom: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .footer-col ul {
+            list-style: none;
+        }
+        .footer-col ul li {
+            margin-bottom: 0.6rem;
+        }
+        .footer-col ul li a {
+            color: #cbd5e1;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .footer-col ul li a:hover {
+            color: #fff;
+        }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 1px solid #34495e;
+            padding-top: 2rem;
+            font-size: 0.9rem;
+            color: #94a3b8;
+        }
+
+        /* Responzivita pre mobily */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } 
+            .about-content { flex-direction: column-reverse; }
+            .contact-container { flex-direction: column; }
+            .form-row { flex-direction: column; gap: 0; }
+            .hero-content h1 { font-size: 2.3rem; }
+            .hero-content p { font-size: 1.2rem; }
+            .hero-container { height: 65vh; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <div>Hotel <span>Knížat</span></div>
+                <div class="stars">⭐⭐⭐⭐⭐</div>
+            </div>
+            <ul class="nav-links">
+                <li><a href="#domov">Domov</a></li>
+                <li><a href="#o-nas">O nás</a></li>
+                <li><a href="#ubytovanie">Ubytovanie</a></li>
+                <li><a href="#restauracia">Reštaurácia</a></li>
+                <li><a href="#wellness">Wellness</a></li>
+                <li><a href="#kontakt">Rezervácia</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="domov" class="hero-container">
+        <img class="hero-bg-img" src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1920&q=80" alt="Tatranská príroda">
+        <div class="hero-overlay"></div>
+        
+        <div class="hero-content">
+            <h1>5★ Kráľovstvo rodinných zážitkov na brehu Štrbského Plesa</h1>
+            <p>Kde sa prvotriedny luxus snúbi s detskou radosťou a rodičia nachádzajú dokonalý päťhviezdičkový pokoj.</p>
+            <a href="#kontakt" class="btn">Rezervovať kráľovský pobyt</a>
+        </div>
+    </div>
+
+    <section>
+        <h2>Kreatívne pobytové balíčky</h2>
+        <p class="tagline">Prvotriedne zážitky ušité na miery pre najnáročnejších malých aj veľkých dobrodruhov. Kliknite na balíček pre zobrazenie detailov a cien.</p>
+        <div class="grid">
+            
+            <div class="card">
+                <div class="card-img-holder">
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=600&q=80" alt="Deti s mapou objavujú svet v prírode">
+                </div>
+                <div class="card-content">
+                    <h3>👑 Expedícia: Malý Tatranský Knieža</h3>
+                    <p><strong>Pre koho:</strong> Rodiny s deťmi do 12 rokov.</p>
+                    <p style="margin-top: 0.5rem;">Zážitkový program plný záhad, dobrodružstiev a spoznávania krás Štrbského Plesa tou najhravejšou formou.</p>
+                    
+                    <details class="room-details">
+                        <summary class="room-summary">Zobraziť ceny a informácie</summary>
+                        <p style="font-size: 0.9rem; color: #555; margin-bottom: 0.8rem;">
+                            <strong>Balíček zahŕňa:</strong> Hru s animovanou mapou po stopách tatranských lesov, neobmedzený celodenný vstup do detského kútika "Knížatkovo" s profesionálnym programom a večerné rozprávkové čítanie tatranských legiend pri krbe s maskotom.
+                        </p>
+                        <table class="price-table">
+                            <tr>
+                                <th>Dĺžka pobytu</th>
+                                <th>Cena (Rodina 2+1)</th>
+                            </tr>
+                            <tr>
+                                <td>Víkend (2 noci)</td>
+                                <td><strong>420 €</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Predĺžený (3 noci)</td>
+                                <td><strong>590 €</strong></td>
+                            </tr>
+                        </table>
+                        <p style="font-size: 0.85rem; margin-top: 0.8rem; color: #666;">* Každé ďalšie dieťa do 12 rokov na prístelke má pobyt vrátane stravy za zvýhodnenú cenu 45 € / noc.</p>
+                        <a href="#kontakt" class="btn-select-package" onclick="selectOption('package', 'balicek-knieza')">Vybrať tento balíček</a>
+                    </details>
+                </div>
+            </div>
+            
+            <div class="card">
+                <div class="card-img-holder">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80" alt="Oddych pre rodičov">
+                </div>
+                <div class="card-content">
+                    <h3>🌲 Reštart pre Kráľa a Kráľovnú</h3>
+                    <p><strong>Pre koho:</strong> Vyťažení rodičia, ktorí potrebujú vypnúť.</p>
+                    <p style="margin-top: 0.5rem;">Zaslúžený luxusný oddych pre vás, kým o radostný a bezpečný program vašich detí bude plnohodnotne postarané.</p>
+                    
+                    <details class="room-details">
+                        <summary class="room-summary">Zobraziť ceny a informácie</summary>
+                        <p style="font-size: 0.9rem; color: #555; margin-bottom: 0.8rem;">
+                            <strong>Balíček zahŕňa:</strong> Celodennú animáciu "Lov tatranského rysa" pre deti, zatiaľ čo rodičia si užijú 60-minútovú párovú masáž, fľašu exkluzívnego sektu na izbe a privátny hodinový nočný vstup do wellness pod hviezdnou oblohou.
+                        </p>
+                        <table class="price-table">
+                            <tr>
+                                <th>Dĺžka pobytu</th>
+                                <th>Cena (Rodina 2+2)</th>
+                            </tr>
+                            <tr>
+                                <td>Víkend (2 noci)</td>
+                                <td><strong>540 €</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Predĺžený (3 noci)</td>
+                                <td><strong>760 €</strong></td>
+                            </tr>
+                        </table>
+                        <p style="font-size: 0.85rem; margin-top: 0.8rem; color: #666;">* V cene je zahrnutá rozšírená polpenzia s možnosťou večerného stráženia detí na izbe počas večere rodičov.</p>
+                        <a href="#kontakt" class="btn-select-package" onclick="selectOption('package', 'balicek-restart')">Vybrať tento balíček</a>
+                    </details>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img-holder">
+                    <img src="https://images.unsplash.com/photo-1482862549707-f63cb32c5fd9?auto=format&fit=crop&w=600&q=80" alt="Zimná krajina">
+                </div>
+                <div class="card-content">
+                    <h3>❄️ Zimná rozprávka pod Soliskom</h3>
+                    <p><strong>Pre koho:</strong> Milovníci snehu a rodinnej sánkovačky.</p>
+                    <p style="margin-top: 0.5rem;">Najlepšia zimná rodinná lyžovačka a sánkovačka priamo v srdci slovenských veľhôr s prémiovými službami.</p>
+                    
+                    <details class="room-details">
+                        <summary class="room-summary">Zobraziť ceny a informácie</summary>
+                        <p style="font-size: 0.9rem; color: #555; margin-bottom: 0.8rem;">
+                            <strong>Balíček zahŕňa:</strong> 2 hodiny s privátnym certifikovaným inštruktorom lyžovania pre deti, neobmedzené zapožičanie sánok a klzákov, skipasy pre celú rodinu a každodenné popoludňajšie posedenie pri pravej horúcej čokolade pre deti a tatranskom čaji pre rodičov.
+                        </p>
+                        <table class="price-table">
+                            <tr>
+                                <th>Dĺžka pobytu</th>
+                                <th>Cena (Rodina 2+1)</th>
+                            </tr>
+                            <tr>
+                                <td>Pobyt na 4 noci</td>
+                                <td><strong>890 €</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Týždenný (6 nocí)</td>
+                                <td><strong>1250 €</strong></td>
+                            </tr>
+                        </table>
+                        <p style="font-size: 0.85rem; margin-top: 0.8rem; color: #666;">* Balíček je dostupný výhradne v mesiacoch december – marec. Odporúčame rezerváciu lyžiarskeho inštruktora vopred.</p>
+                        <a href="#kontakt" class="btn-select-package" onclick="selectOption('package', 'balicek-zimna')">Vybrať tento balíček</a>
+                    </details>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="o-nas">
+        <h2>Príbeh rodinného klenotu</h2>
+        <p class="tagline">Como sa z lásky k Tatrám a deťom zrodil špičkový 5★ Hotel Knížat.</p>
+        <div class="about-content">
+            <div class="about-text">
+                <p>Náš príbeh sa začal písať pred rokmi, kým sme ako mladá rodina hľadali miesto v Tatrách, kde by sme sa necítili obmedzovaní tým, že máme so sebou hlučné a zvedavé deti. Našli sme čarovné miesto hneď vedľa Štrbského plesa a rozhodli sme sa vybudovať hotel, kde deti nie sú len „tolerované“, ale sú stredobodom nášho sveta.</p>
+                <br>
+                <p>Názov <strong>Knížat</strong> nesie odkaz na to, že každé dieťa je u nás malým princom či princeznou, a každý rodič si zaslúži bezchybnú, exkluzívnu starostlivosť najvyššieho štandardu. Veríme, že tie najluxusnejšie spomienky sa rodia vtedy, keď je celá rodina dokonale šťastná a uvoľnená.</p>
+            </div>
+            <div class="about-img-container">
+                <img src="https://images.unsplash.com/photo-1473625247510-8ceb1760943f?auto=format&fit=crop&w=800&q=80" alt="Šťastná rodina v horách">
+            </div>
+        </div>
+    </section>
+
+    <section id="ubytovanie">
+        <h2>Päťhviezdičkové komnaty pre váš spánok</h2>
+        <p class="tagline">Luxusné, mimoriadne priestranné suity vybavené s maximálnym ohľadom na komfort. Kliknite na izbu pre detaily.</p>
+        <div class="grid">
+            
+            <div class="card">
+                <div class="card-img-holder"><img src="https://images.unsplash.com/photo-1618773928121-c32242e63f39?auto=format&fit=crop&w=600&q=80" alt="Izba Knížatko"></div>
+                <div class="card-content">
+                    <h3>Izba "Knížatko" (Premium Standard)</h3>
+                    <p>Elegantná prémiová izba pre 2 dospelých a 1 dieťa. Vybavená luxusnou kozmetikou, detskými poistkami a hračkami na privítanie.</p>
+                    
+                    <details class="room-details">
+                        <summary class="room-summary">Zobraziť ceny, galériu a info</summary>
+                        
+                        <div class="room-info-block">
+                            <strong>Informácie o izbe:</strong>
+                            <ul>
+                                <li>📐 <strong>Rozloha:</strong> 38 m²</li>
+                                <li>👥 <strong>Max. kapacita:</strong> 2 dospelí + 1 dieťa</li>
+                                <li>🌲 <strong>Výhľad:</strong> Panoráma tatranského lesa</li>
+                                <li>✨ <strong>Prémiové rodinné vybavenie:</strong> Ohrievač fliaš, nočník, baby monitor, protisklzové podložky a darček pre malého kniežaťa na privítanie.</li>
+                            </ul>
+                        </div>
+
+                        <div class="room-gallery">
+                            <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=400&q=80" alt="Izba Knížatko kúpeľňa">
+                            <img src="https://images.unsplash.com/photo-1582719508461-905c673771fd?auto=format&fit=crop&w=400&q=80" alt="Izba Knížatko detail">
+                        </div>
+                        <table class="price-table">
+                            <tr>
+                                <th>Sezóna</th>
+                                <th>Cena / noc</th>
+                            </tr>
+                            <tr>
+                                <td>Mimo sezóny</td>
+                                <td><strong>180 €</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Hlavná sezóna</td>
+                                <td><strong>240 €</strong></td>
+                            </tr>
+                        </table>
+                        <a href="#kontakt" class="btn-select-package" onclick="selectOption('room', 'izba-knizatko')">Rezervovať izbu samostatne</a>
+                    </details>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img-holder"><img src="https://images.unsplash.com/photo-1590490360182-c33d57733427?auto=format&fit=crop&w=600&q=80" alt="Apartmán Tatranský Medveď"></div>
+                <div class="card-content">
+                    <h3>Apartmán "Tatranský Medveď" (Grand Suite)</h3>
+                    <p>Exkluzívny veľkorysý priestor s oddelenou spálňou pre rodičov a dizajnovou detskou izbou s domčekom na strome. Kapacita 5 osôb.</p>
+                    
+                    <details class="room-details">
+                        <summary class="room-summary">Zobraziť ceny, galériu a info</summary>
+                        
+                        <div class="room-info-block">
+                            <strong>Informácie o izbe:</strong>
+                            <ul>
+                                <li>📐 <strong>Rozloha:</strong> 72 m²</li>
+                                <li>👥 <strong>Max. kapacita:</strong> 2 dospelí + až 3 deti</li>
+                                <li>🏔️ <strong>Výhľad:</strong> Bočný výhľad na jazero a štíty</li>
+                                <li>✨ <strong>Prémiové rodinné vybavenie:</strong> Interaktívna detská herná zóna na izbe, mini-knižnica s rozprávkami, detské župany, ekologická kozmetika pre bábätká a nonstop detský bufet.</li>
+                            </ul>
+                        </div>
+
+                        <div class="room-gallery">
+                            <img src="https://images.unsplash.com/photo-1616594039964-ae9021a400a0?auto=format&fit=crop&w=400&q=80" alt="Medveď obývačka">
+                            <img src="https://images.unsplash.com/photo-1560185007-c5ca9d2c014d?auto=format&fit=crop&w=400&q=80" alt="Medveď detský kút">
+                        </div>
+                        <table class="price-table">
+                            <tr>
+                                <th>Sezóna</th>
+                                <th>Cena / noc</th>
+                            </tr>
+                            <tr>
+                                <td>Mimo sezóny</td>
+                                <td><strong>290 €</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Hlavná sezóna</td>
+                                <td><strong>380 €</strong></td>
+                            </tr>
+                        </table>
+                        <a href="#kontakt" class="btn-select-package" onclick="selectOption('room', 'apt-medved')">Rezervovať apartmán samostatne</a>
+                    </details>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img-holder"><img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=600&q=80" alt="Mezonet Orlie Hniezdo"></div>
+                <div class="card-content">
+                    <h3>Kráľovský Mezonet "Orlie Hniezdo"</h3>
+                    <p>Dvojposchodový luxus s panoramatickým výhľadom na Štrbské pleso. Vlastný krb, herná konzola a veľká mramorová vaňa.</p>
+                    
+                    <details class="room-details">
+                        <summary class="room-summary">Zobraziť ceny, galériu a info</summary>
+                        
+                        <div class="room-info-block">
+                            <strong>Informácie o izbe:</strong>
+                            <ul>
+                                <li>📐 <strong>Rozloha:</strong> 115 m² (2 podlažia)</li>
+                                <li>👥 <strong>Max. kapacita:</strong> 4 dospelí + 2 deti</li>
+                                <li>🌊 <strong>Výhľad:</strong> Priamy, dychberúci výhľad na Štrbské pleso</li>
+                                <li>✨ <strong>Prémiové rodinné vybavenie:</strong> PlayStation 5 / Xbox, dizajnový bio-krb, veľká vaňa s hračkami, kávovar De'Longhi a služba "Kráľovský spánok".</li>
+                            </ul>
+                        </div>
+
+                        <div class="room-gallery">
+                            <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=400&q=80" alt="Orlie hniezdo výhľad">
+                            <img src="https://images.unsplash.com/photo-1507652313519-d4e9174996dd?auto=format&fit=crop&w=400&q=80" alt="Orlie hniezdo kúpeľňa">
+                        </div>
+                        <table class="price-table">
+                            <tr>
+                                <th>Sezóna</th>
+                                <th>Cena / noc</th>
+                            </tr>
+                            <tr>
+                                <td>Mimo sezóny</td>
+                                <td><strong>450 €</strong></td>
+                            </tr>
+                            <tr>
+                                <td>Hlavná sezóna</td>
+                                <td><strong>590 €</strong></td>
+                            </tr>
+                        </table>
+                        <a href="#kontakt" class="btn-select-package" onclick="selectOption('room', 'mezonet-orlie')">Rezervovať mezonet samostatne</a>
+                    </details>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="restauracia">
+        <h2>Fine Dining Reštaurácia "U Hladného Vlka"</h2>
+        <p class="tagline">Zážitková 5★ gastronómia pre dospelých gurmánov, hravé kulinárske dobrodružstvá pre deti.</p>
+        
+        <div style="width: 100%; height: 350px; overflow: hidden; border-radius: 8px; margin-bottom: 2rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+            <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?auto=format&fit=crop&w=1200&q=80" alt="Reštaurácia" style="width: 100%; height: 100%; object-fit: cover;">
+        </div>
+
+        <div style="text-align: center; max-width: 800px; margin: 0 auto 3rem auto;">
+            <p style="font-size: 1.1rem;">Naša reštaurácia spája špičkovú modernú slovenskú kuchyňu s potrebami malých stravníkov. Kým vy si vychutnávate jelení chrbát s brusnicovou omáčkou od nášho šéfkuchára, vaše deti sa zabavia s naším „zázračným menu“.</p>
+        </div>
+        
+        <div class="grid">
+            <div class="card">
+                <div class="card-content">
+                    <h4 style="font-size: 1.5rem; text-align: center; color: var(--primary-color);">🍲 Pre dospelých gurmánov</h4>
+                    <hr style="margin: 0.8rem 0; border: 1px solid var(--primary-color); opacity: 0.2;">
+                    
+                    <div class="menu-section-title">Predjedlá</div>
+                    <div class="menu-item">
+                        <p class="menu-item-name">• Domáca jelenia nátierka</p>
+                        <p class="menu-item-desc">Podávaná na chrumkavom kváskovom chlebe s nakladanou cibuľkou.</p>
+                    </div>
+                    <div class="menu-item">
+                        <p class="menu-item-name">• Grilovaný ovčí syr</p>
+                        <p class="menu-item-desc">Na hniezde z poľného šalátu s brusnicovým dresingom.</p>
+                    </div>
+
+                    <div class="menu-section-title">Polievky</div>
+                    <div class="menu-item">
+                        <p class="menu-item-name">• Tradičná tatranská kapustnica</p>
+                        <p class="menu-item-desc">S údeným mäsom, domácou klobáskou a lesnými hubami.</p>
+                    </div>
+
+                    <div class="menu-section-title">Hlavné jedlá</div>
+                    <div class="menu-item">
+                        <p class="menu-item-name">• Pomalé teľacie líčka</p>
+                        <p class="menu-item-desc">Na tmavom pive s koreňovou zeleninou a zemiakovým pyré.</p>
+                    </div>
+                    <div class="menu-item">
+                        <p class="menu-item-name">• Pstruh z tatranských potokov</p>
+                        <p class="menu-item-desc">Pečený na bylinkovom masle s varenými zemiakmi.</p>
+                    </div>
+
+                    <div class="menu-section-title">Dezerty</div>
+                    <div class="menu-item">
+                        <p class="menu-item-name">• Horúca tatranská štrúdľa</p>
+                        <p class="menu-item-desc">Ťahané cesto plnené jablkami, s vanilkovou zmrzlinou.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-content">
+                    <h4 style="font-size: 1.5rem; text-align: center; color: var(--primary-color);">🧸 Detské menu "Mňam-Mňam"</h4>
+                    <hr style="margin: 0.8rem 0; border: 1px solid var(--primary-color); opacity: 0.2;">
+                    
+                    <div class="menu-section-title">Malé zahryznutie</div>
+                    <div class="menu-item">
+                        <p class="menu-item-name">• Chrumkavé mrkvové hranolky</p>
+                        <p class="menu-item-desc">S jemným sladkým jogurtovo-bylinkovým dipom.</p>
+                    </div>
+
+                    <div class="menu-section-title">Polievky</div>
+                    <div class="menu-item">
+                        <p class="menu-item-name">• Obláčiková hrášková polievka</p>
+                        <p class="menu-item-desc">Jemný krémový hrášok s chrumkavými maslovými krutónmi.</p>
+                    </div>
+
+                    <div class="menu-section-title">Hlavné jedlá</div>
+                    <div class="menu-item">
+                        <p class="menu-item-name">• Šibalské domáce šúľance</p>
+                        <p class="menu-item-desc">S voňavým mletým makom (alebo kakaom) bohato poliate maslom.</p>
+                    </div>
+                    <div class="menu-item">
+                        <p class="menu-item-name">• Kuracie Ninja nugetky</p>
+                        <p class="menu-item-desc">Chrumkavé prsia obalené v cornflakes s zemiakovou kašou.</p>
+                    </div>
+
+                    <div class="menu-section-title">Sladká bodka</div>
+                    <div class="menu-item">
+                        <p class="menu-item-name">• Palacinka "Tatranský Maco"</p>
+                        <p class="menu-item-desc">Ozdobená čerstvým lesným ovocím a čokoládovým úsmevom.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="wellness">
+        <h2>Exkluzívny Wellness svet "Pleso Relax"</h2>
+        <p class="tagline">Prvotriedny relax pre unavenú myseľ rodičov a oáza zážitkov pre malých vodníkov. Kliknite na službu pre detaily a cenník.</p>
+        <div class="grid">
+            
+            <div class="card">
+                <div class="card-img-holder"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" alt="Detská masáž"></div>
+                <div class="card-content">
+                    <h3>🌋 Rituál "Tatranský Svišť" (Pre deti)</h3>
+                    <p>Jemná a hravá masáž s vôňou pravej lesnej jahody. Masér naučí deti správne dýchať a uvoľniť svaly po celodennej túre.</p>
+                    
+                    <details class="room-details">
+                        <summary class="room-summary">Zobraziť ceny a informácie</summary>
+                        <table class="price-table">
+                            <tr>
+                                <th>Trvanie</th>
+                                <th>Cena</th>
+                            </tr>
+                            <tr>
+                                <td>30 minút</td>
+                                <td><strong>35 €</strong></td>
+                            </tr>
+                        </table>
+                    </details>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img-holder"><img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=600&q=80" alt="Wellness pre dospelých"></div>
+                <div class="card-content">
+                    <h3>🌲 Kúpeľ "Sila tatranského lesa" (Pre dospelých)</h3>
+                    <p>Hlboko relaxačný rituál v drevenej kadi s extraktom z ihličia. Nasleduje masáž horúcimi lávovými kameňmi.</p>
+                    
+                    <details class="room-details">
+                        <summary class="room-summary">Zobraziť ceny a informácie</summary>
+                        <table class="price-table">
+                            <tr>
+                                <th>Služba</th>
+                                <th>Cena</th>
+                            </tr>
+                            <tr>
+                                <td>Kúpeľ + Masáž (75 min)</td>
+                                <td><strong>85 €</strong></td>
+                            </tr>
+                        </table>
+                    </details>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img-holder"><img src="https://images.unsplash.com/photo-1566454544259-f4b94c3d758c?auto=format&fit=crop&w=600&q=80" alt="Detský kútik"></div>
+                <div class="card-content">
+                    <h3>🏰 Služba: VIP Detský svet "Knížatkovo"</h3>
+                    <p>Celodenné profesionálne stráženie detí. Kým vy relaxujete vo fínskej saune, vaše deti objavujú interaktívny hrad.</p>
+                    
+                    <details class="room-details">
+                        <summary class="room-summary">Zobraziť ceny a informácie</summary>
+                        <table class="price-table">
+                            <tr>
+                                <th>Typ vstupu</th>
+                                <th>Cena</th>
+                            </tr>
+                            <tr>
+                                <td>Pre ubytovaných hostí</td>
+                                <td><strong>ZADARMO</strong></td>
+                            </tr>
+                        </table>
+                    </details>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img-holder"><img src="https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7?auto=format&fit=crop&w=600&q=80" alt="Rodinný bazén"></div>
+                <div class="card-content">
+                    <h3>🌊 Rodinný bazénový svet "Vydríduch"</h3>
+                    <p>Vnútorný vyhrievaný bazén s teplotou 32°C s vodnými tryskami, protiprúdom a bezpečnou šmýkačkou pre menšie deti.</p>
+                    
+                    <details class="room-details">
+                        <summary class="room-summary">Zobraziť ceny a informácie</summary>
+                        <table class="price-table">
+                            <tr>
+                                <th>Návštevník</th>
+                                <th>Cena (3 hodiny)</th>
+                            </tr>
+                            <tr>
+                                <td>Dospelá osoba</td>
+                                <td><strong>25 €</strong></td>
+                            </tr>
+                        </table>
+                    </details>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img-holder"><img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=600&q=80" alt="Sauna"></div>
+                <div class="card-content">
+                    <h3>🧖‍♂️ Saunový rituál "Hrebeň Soliska"</h3>
+                    <p>Špeciálne upravené jemné sauny (bylinková a soľná inhalačná) s teplotou do 50°C. Sú ideálne na posilnenie imunity.</p>
+                    
+                    <details class="room-details">
+                        <summary class="room-summary">Zobraziť ceny a informácie</summary>
+                        <table class="price-table">
+                            <tr>
+                                <th>Vstup</th>
+                                <th>Cena</th>
+                            </tr>
+                            <tr>
+                                <td>Jednorazový vstup</td>
+                                <td><strong>20 €</strong></td>
+                            </tr>
+                        </table>
+                    </details>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-img-holder"><img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=80" alt="Vonkajšia vírivka"></div>
+                <div class="card-content">
+                    <h3>⛰️ Panoramatické Jacuzzi "Orlia Vyhliadka"</h3>
+                    <p>Užite si horúci relaxačný kúpeľ vo vonkajšom jacuzzi priamo na terase wellnessu s dychberúcim výhľadom.</p>
+                    
+                    <details class="room-details">
+                        <summary class="room-summary">Zobraziť ceny a informácie</summary>
+                        <table class="price-table">
+                            <tr>
+                                <th>Typ rezervácie</th>
+                                <th>Cena / 45 min</th>
+                            </tr>
+                            <tr>
+                                <td>Privátny prenájom (po 22:00)</td>
+                                <td><strong>90 €</strong></td>
+                            </tr>
+                        </table>
+                    </details>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="kontakt">
+        <h2>Rezervácia exkluzívneho pobytu</h2>
+        <p class="tagline">Zabezpečte si najlepšiu dostupnú cenu online prostredníctvom nášho šifrovaného rezervačného protokolu.</p>
+        
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Hotel Knížat *****</h3>
+                <p style="margin: 0.5rem 0;">📍 K Váhu 45, 059 85 Štrbské Pleso</p>
+                <p style="margin: 0.5rem 0;">📞 +421 905 123 456</p>
+                <p style="margin: 0.5rem 0;">✉️ concierge@hotelknizat.sk</p>
+                <br>
+                <h4>Garantované VIP Výhody online rezervácie:</h4>
+                <p style="font-size:0.92rem; color:#555; margin-bottom:0.5rem;">✔ Najnižšia garantovaná cena oproti portálom Booking.com / Expedia.</p>
+                <p style="font-size:0.92rem; color:#555; margin-bottom:0.5rem;">✔ Welcome drink a darček pre deti pri príchode.</p>
+                <p style="font-size:0.92rem; color:#555; margin-bottom:0.5rem;">✔ Bezplatný Valet Parking a prednostný Check-in.</p>
+                <p style="font-size:0.92rem; color:#555; margin-bottom:1.5rem;">✔ Bezplatné storno do 7 dní pred nástupom na pobyt.</p>
+                
+                <div class="booking-summary-box">
+                    <h4>Asistencia Concierge</h4>
+                    <p style="font-size: 0.85rem; color: #666;">Naša non-stop prémiová linka pre úpravu rezervácií a individuálne požiadavky:</p>
+                    <p style="font-weight: bold; margin-top:0.5rem; color: var(--secondary-color);">+421 905 999 888</p>
+                </div>
+            </div>
+            
+            <div class="contact-form">
+                <form id="hotelBookingForm" onsubmit="processProfessionalBooking(event)">
+                    
+                    <h4 style="margin-bottom: 1rem; color: var(--primary-color); border-bottom: 2px solid var(--light-bg); padding-bottom: 0.5rem;">1. Kontaktné údaje</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="client_name">Meno a priezvisko / Názov rodiny</label>
+                            <input type="text" id="client_name" required placeholder="napr. Ing. Peter Kováč">
+                        </div>
+                        <div class="form-group">
+                            <label for="client_email">E-mailová adresa (pre potvrdenie)</label>
+                            <input type="email" id="client_email" required placeholder="kovac@luxury-travel.sk">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="client_phone">Telefónne číslo</label>
+                            <input type="tel" id="client_phone" required placeholder="+421 ___ ___ ___">
+                        </div>
+                    </div>
+
+                    <h4 style="margin-top: 1.5rem; margin-bottom: 1rem; color: var(--primary-color); border-bottom: 2px solid var(--light-bg); padding-bottom: 0.5rem;">2. Parametre pobytu</h4>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="checkin">Dátum príchodu (Check-in)</label>
+                            <input type="date" id="checkin" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="checkout">Dátum odchodu (Check-out)</label>
+                            <input type="date" id="checkout" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="adults">Dospelé osoby</label>
+                            <select id="adults">
+                                <option value="1">1 dospelý</option>
+                                <option value="2" selected>2 dospelí</option>
+                                <option value="3">3 dospelí</option>
+                                <option value="4">4 dospelí</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="children">Deti (do 12 rokov)</label>
+                            <select id="children">
+                                <option value="0">Bez detí</option>
+                                <option value="1" selected>1 dieťa</option>
+                                <option value="2">2 deti</option>
+                                <option value="3">3 deti</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="accommodation_select">Vyberte pobytový balíček alebo typ ubytovania</label>
+                        <select id="accommodation_select" onchange="calculateEstimatedPrice()">
+                            <option value="">-- Vyberte preferenciu ubytovania --</option>
+                            <optgroup label="Zážitkové balíčky (v cene program a strava)">
+                                <option value="balicek-knieza" data-price="210">👑 Expedícia: Malý Tatranský Knieža (od 210 € / noc)</option>
+                                <option value="balicek-restart" data-price="270">🌲 Reštart pre Kráľa a Kráľovnú (od 270 € / noc)</option>
+                                <option value="balicek-zimna" data-price="222">❄️ Zimná rozprávka pod Soliskom (od 222 € / noc)</option>
+                            </optgroup>
+                            <optgroup label="Samostatné luxusné izby a suity (cena za noc)">
+                                <option value="izba-knizatko" data-price="180">Izba "Knížatko" Premium Standard (Mimo sezóny: 180 € / noc)</option>
+                                <option value="apt-medved" data-price="290">Apartmán "Tatranský Medveď" Grand Suite (Mimo sezóny: 290 € / noc)</option>
+                                <option value="mezonet-orlie" data-price="450">Kráľovský Mezonet "Orlie Hniezdo" (Mimo sezóny: 450 € / noc)</option>
+                            </optgroup>
+                        </select>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="special_requests">Špeciálne požiadavky (alergie, detská postieľka, transfer...)</label>
+                        <textarea id="special_requests" rows="3" placeholder="Napr. Prosíme pripraviť detskú postieľku a bezlepkové pečivo na raňajky."></textarea>
+                    </div>
+
+                    <h4 style="margin-top: 1.5rem; margin-bottom: 1rem; color: var(--primary-color); border-bottom: 2px solid var(--light-bg); padding-bottom: 0.5rem;">3. Zabezpečená platba a garancia</h4>
+                    
+                    <div class="payment-security-notice">
+                        🔒 <strong>256-bit SSL šifrované spojenie.</strong> Rezerváciou online autorizujete bezpečné overenie kapacity. Platba prebieha cez certifikovanú bránu GP Webpay.
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label>Zvoľte platobnú metódu pre garanciu rezervácie</label>
+                        <div class="payment-methods">
+                            <label style="font-weight: normal; display: flex; align-items: center; gap: 0.5rem; cursor: pointer;">
+                                <input type="radio" name="payment_method" value="card" checked> Platobná karta online
+                            </label>
+                            <div class="payment-badge">Visa</div>
+                            <div class="payment-badge">Mastercard</div>
+                            <div class="payment-badge">Apple Pay</div>
+                        </div>
+                    </div>
+
+                    <div id="price_display" style="font-size: 1.2rem; font-weight: bold; color: var(--primary-color); margin: 1.5rem 0; padding: 1rem; background: #fff8f2; border: 1px solid #ffe3cf; border-radius: 4px; text-align: center; display: none;">
+                        Predbežná kalkulácia: <span id="calculated_amount" style="color: var(--secondary-color); font-size: 1.4rem;">0</span> €
+                    </div>
+
+                    <button type="submit" class="btn" style="border: none; width: 100%; cursor: pointer; margin-top: 1rem; background-color: var(--accent-color);">
+                        Záväzne rezervovať s garanciou najnižšej ceny
+                    </button>
+                    <p style="font-size: 0.75rem; text-align: center; color: #7f8c8d; margin-top: 0.5rem;">Odoslaním formulára súhlasíte so storno podmienkami 5★ Hotela Knížat a spracovaním osobných údajov GDPR.</p>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div id="successModal" class="modal-success">
+        <div class="modal-content">
+            <div class="success-icon">✔</div>
+            <h3>Rezervácia úspešne spracovaná</h3>
+            <p>Vážený klient, vaša exkluzívna požiadavka bola autorizovaná našou rezervačnou bránou a izba bola dočasne zablokovaná vo vašom kalendári.</p>
+            
+            <div class="receipt-details">
+                <strong>Rezervačný kód:</strong> <span id="receipt_code" style="font-family: monospace; font-weight: bold; color: var(--secondary-color);">HK-2026-8849</span><br>
+                <strong>Klient:</strong> <span id="receipt_name">Rodina Kováčová</span><br>
+                <strong>Termín:</strong> <span id="receipt_dates">---</span><br>
+                <strong>Stav platby:</strong> <span style="color: var(--accent-color); font-weight: bold;">Garantované kartou (Čaká na finálne potvrdenie kapacity)</span>
+            </div>
+            
+            <p style="font-size: 0.85rem; color: #666; margin-bottom: 2rem;">Na váš e-mail bol odoslaný zálohový list s rekapituláciou služieb. Náš osobný VIP manažér (Concierge) vás bude kontaktovať telefonicky do 30 minút pre doladenie detailov vášho príchodu.</p>
+            <button class="btn" style="margin-top: 0; width: 100%; background-color: var(--primary-color);" onclick="closeSuccessModal()">Návrat na hlavnú stránku</button>
+        </div>
+    </div>
+
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Hotel Knížat *****</h4>
+                <p style="color: #cbd5e1; font-size: 0.95rem;">Luxusné rodinné sídlo situované v najprestížnejšej časti Vysokých Tatier na brehu Štrbského Plesa.</p>
+                <div class="stars" style="margin-top: 0.5rem; font-size: 1.1rem;">⭐⭐⭐⭐⭐</div>
+            </div>
+            <div class="footer-col">
+                <h4>Rýchle odkazy</h4>
+                <ul>
+                    <li><a href="#domov">Úvodná stránka</a></li>
+                    <li><a href="#o-nas">Náš príbeh</a></li>
+                    <li><a href="#ubytovanie">Suity a mezonety</a></li>
+                    <li><a href="#restauracia">Zážitková gastronómia</a></li>
+                    <li><a href="#wellness">Pleso Relax Wellness</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Právne informácie</h4>
+                <ul>
+                    <li><a href="#">Všeobecné obchodné podmienky</a></li>
+                    <li><a href="#">Storno podmienky a refundácie</a></li>
+                    <li><a href="#">Ochrana osobných údajov (GDPR)</a></li>
+                    <li><a href="#">Spracovanie cookies</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Rodinný Hotel Knížat *****, Štrbské Pleso. Všetky práva vyhradené.</p>
+            <p style="font-size: 0.8rem; margin-top: 0.5rem; color: #64748b;">Špičkový rezervačný softvér HotelKnížat Engine v3.4. Šifrované prostredníctvom TLS 1.3.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Funkcia na automatické vybratie balíčka z kariet do formulára
+        function selectOption(type, value) {
+            const selectElement = document.getElementById('accommodation_select');
+            selectElement.value = value;
+            calculateEstimatedPrice();
+            
+            // Plynulý posun na formulár
+            document.getElementById('kontakt').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Dynamická kalkulácia predbežnej ceny (UX prvok pre profesionálny dojem)
+        function calculateEstimatedPrice() {
+            const select = document.getElementById('accommodation_select');
+            const selectedOption = select.options[select.selectedIndex];
+            const checkin = document.getElementById('checkin').value;
+            const checkout = document.getElementById('checkout').value;
+            const priceDisplay = document.getElementById('price_display');
+            const calculatedAmount = document.getElementById('calculated_amount');
+
+            if (!selectedOption || !selectedOption.value || !checkin || !checkout) {
+                priceDisplay.style.display = 'none';
+                return;
+            }
+
+            const basePrice = parseFloat(selectedOption.getAttribute('data-price'));
+            
+            // Výpočet počtu nocí
+            const date1 = new Date(checkin);
+            const date2 = new Date(checkout);
+            const timeDiff = date2.getTime() - date1.getTime();
+            const nights = Math.ceil(timeDiff / (1000 * 3600 * 24));
+
+            if (nights > 0) {
+                let totalPrice = basePrice * nights;
+                
+                // Ak ide o fixný balíček, ktorý už obsahuje dĺžku v opise, prerobíme kalkuláciu na základnú
+                // (Pre jednoduchosť ukážky počítame čisto: cena_noc * noci)
+                calculatedAmount.textContent = totalPrice;
+                priceDisplay.style.display = 'block';
+            } else {
+                priceDisplay.style.display = 'none';
+            }
+        }
+
+        // Naviazanie výpočtu ceny na zmenu dátumov
+        document.getElementById('checkin').addEventListener('change', calculateEstimatedPrice);
+        document.getElementById('checkout').addEventListener('change', calculateEstimatedPrice);
+
+        // Profesionálne spracovanie odoslania formulára
+        function processProfessionalBooking(event) {
+            event.preventDefault(); // Zamedzenie obnovenia stránky
+
+            // Zber dát z formulára
+            const name = document.getElementById('client_name').value;
+            const checkin = document.getElementById('checkin').value;
+            const checkout = document.getElementById('checkout').value;
+            
+            // Generovanie unikátneho rezervačného čísla
+            const randomCode = 'HK-' + new Date().getFullYear() + '-' + Math.floor(1000 + Math.random() * 9000);
+            
+            // Dosadenie dát do modálneho okna
+            document.getElementById('receipt_code').textContent = randomCode;
+            document.getElementById('receipt_name').textContent = name;
+            document.getElementById('receipt_dates').textContent = checkin + ' až ' + checkout;
+
+            // Zobrazenie modálneho okna
+            document.getElementById('successModal').style.display = 'flex';
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').style.display = 'none';
+            document.getElementById('hotelBookingForm').reset();
+            document.getElementById('price_display').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
